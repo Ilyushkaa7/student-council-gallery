@@ -36,30 +36,6 @@ const teamData = {
         info: 'Влиятельный член команды. Вносит значительный вклад в развитие студенческого совета и реализацию масштабных проектов.'
     }
 };
-
-// Добавляем кликабельность на имена
-document.addEventListener('DOMContentLoaded', function() {
-    const cards = document.querySelectorAll('.card');
-    
-    cards.forEach(card => {
-        const head = card.querySelector('.card__head');
-        
-        head.style.cursor = 'pointer';
-        
-        head.addEventListener('click', function(e) {
-            e.stopPropagation();
-            
-            const personKey = this.textContent.toLowerCase();
-            const person = teamData[personKey];
-            
-            if (person) {
-                showPersonModal(person);
-            }
-        });
-    });
-});
-
-// Функция показа модального окна с информацией
 function showPersonModal(person) {
     // Удаляем старый модал если есть
     const oldModal = document.querySelector('.modal');
@@ -67,7 +43,6 @@ function showPersonModal(person) {
         oldModal.remove();
     }
     
-    // Создаём модальное окно
     const modal = document.createElement('div');
     modal.className = 'modal';
     modal.innerHTML = `
@@ -86,7 +61,6 @@ function showPersonModal(person) {
     
     document.body.appendChild(modal);
     
-    // Анимация появления
     setTimeout(() => {
         modal.classList.add('modal--active');
     }, 10);
@@ -114,3 +88,24 @@ function closeModal(modal) {
         modal.remove();
     }, 300);
 }
+
+// Цветное фото по нажатию на телефоне
+document.addEventListener('DOMContentLoaded', function () {
+    if (window.innerWidth <= 768) {
+        const cards = document.querySelectorAll('.card');
+
+        cards.forEach(card => {
+            card.addEventListener('click', function () {
+                const img = this.querySelector('img');
+
+                // убрать цвет со всех
+                cards.forEach(c => {
+                    c.querySelector('img').classList.remove('card__img--color');
+                });
+
+                // включить цвет у выбранной
+                img.classList.add('card__img--color');
+            });
+        });
+    }
+});

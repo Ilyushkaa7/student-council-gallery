@@ -230,14 +230,21 @@ body {
         height: auto;
         overflow: visible;
         margin-right: 0 !important;
+        -webkit-tap-highlight-color: transparent;
+        user-select: none;
     }
 
     .card img {
         width: 100%;
         height: auto;
         object-fit: cover;
-        filter: grayscale(0);
+        filter: grayscale(100%);
         display: block;
+        transition: filter 0.3s ease;
+    }
+
+    .card__img--color {
+        filter: grayscale(0) !important;
     }
 
     .card__head {
@@ -250,6 +257,7 @@ body {
         color: white !important;
         background: rgba(138, 43, 226, 0.8) !important;
         display: block;
+        pointer-events: none;
     }
 
     .card:hover {
@@ -265,18 +273,36 @@ body {
     }
 
     .card:hover img {
-        filter: grayscale(0);
+        filter: grayscale(100%);
+    }
+
+    .card:hover .card__img--color {
+        filter: grayscale(0) !important;
     }
 
     .buttons {
-        gap: 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
         margin-top: 20px;
+        width: 100%;
     }
 
     .buttons__btn {
+        width: 100%;
+        max-width: 300px;
         padding: 14px 24px;
         font-size: 14px;
         letter-spacing: 2px;
+        text-align: center;
+        -webkit-tap-highlight-color: transparent;
+        user-select: none;
+    }
+
+    .buttons__btn:active {
+        background: transparent;
+        color: rgba(138, 43, 226, 0.8);
     }
 
     .person-page__name {
