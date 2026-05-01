@@ -211,13 +211,22 @@ body {
     .container {
         transform: skew(0deg);
         margin: 4vmin;
-        flex-wrap: wrap;
-        gap: 10px;
+        flex-direction: column;
+        gap: 1em;
+        overflow: visible;
     }
 
     .card {
-        flex: 0 0 100%;
-        height: 50vmin;
+        flex: 0 0 auto;
+        height: auto;
+        width: 100%;
+        position: relative;
+    }
+
+    .card img {
+        width: 100%;
+        height: 60vmin;
+        object-fit: cover;
     }
 
     .card:not(:nth-child(5)) {
@@ -225,11 +234,28 @@ body {
     }
 
     .card__head {
-        font-size: 0.8em;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transform: rotate(0deg);
+        transform-origin: 0% 0%;
+        min-width: 100%;
+        text-align: center;
+        padding: 0.8em;
+        font-size: 1em;
+        color: white;
+        background: rgba(0, 0, 0, 0.7);
     }
 
     .card:hover .card__head {
         font-size: 1.2em;
+        top: auto;
+        bottom: 0;
+        transform: rotate(0deg) skew(0deg);
+    }
+
+    .card:hover {
+        flex-grow: 0;
     }
 
     .buttons {
@@ -281,8 +307,8 @@ body {
         margin: 3vmin;
     }
 
-    .card {
-        height: 45vmin;
+    .card img {
+        height: 50vmin;
     }
 
     .buttons__btn {
